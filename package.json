@@ -1,1 +1,1 @@
-{"name":"multifazetico-lyrics-solutions","version":"1.0.0","private":true,"type":"module","scripts":{"test":"node --test","check":"node --check app.js && node --check utils.js"}}
+{"name":"multifazetico-lyrics-solutions","version":"1.0.0","private":true,"type":"module","scripts":{"test":"node --test","check":"node --check app.js && node --check utils.js && node --check audio-utils.js"}}
