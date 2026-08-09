@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { TRANSCRIPTION_MODEL, MODEL_DOWNLOAD_MB, assertModelMemory, transcriptionOptions } from '../transcription-config.js';
+import { TRANSCRIPTION_MODEL, MODEL_DOWNLOAD_MB, assertModelMemory, transcriptionOptions, disposeTranscriptionPipeline } from '../transcription-config.js';
 
 test('usa Whisper Small y nunca Whisper Tiny', () => {
   assert.equal(TRANSCRIPTION_MODEL, 'onnx-community/whisper-small');
@@ -16,6 +16,13 @@ test('configura transcripción explícita en español', () => {
 
 test('documenta el peso aproximado del modelo local', () => {
   assert.ok(MODEL_DOWNLOAD_MB >= 240 && MODEL_DOWNLOAD_MB <= 270);
+});
+
+test('libera las sesiones ONNX al terminar la transcripción', async () => {
+  let disposals = 0;
+  await disposeTranscriptionPipeline({ dispose: async () => { disposals += 1; } });
+  assert.equal(disposals, 1);
+  await assert.doesNotReject(() => disposeTranscriptionPipeline(null));
 });
 
 test('detiene el modelo grande en dispositivos con menos de 4 GB declarados', () => {

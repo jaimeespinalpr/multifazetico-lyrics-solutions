@@ -7,6 +7,10 @@ export function assertModelMemory(deviceMemory) {
   }
 }
 
+export async function disposeTranscriptionPipeline(pipeline) {
+  if (pipeline && typeof pipeline.dispose === 'function') await pipeline.dispose();
+}
+
 export function transcriptionOptions() {
   return {
     language: 'spanish',
