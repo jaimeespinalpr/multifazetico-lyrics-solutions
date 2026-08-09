@@ -5,7 +5,8 @@ Aplicación web en español para transcribir canciones y crear karaokes sincroni
 ## Funciones
 
 - Carga local de archivos MP3.
-- Transcripción en español con Whisper Tiny mediante Transformers.js.
+- Transcripción en español con Whisper Small cuantizado mediante Transformers.js.
+- Descarga inicial aproximada de 249 MB y requisito recomendado de 4 GB de memoria.
 - Procesamiento por fragmentos pequeños para evitar cierres por exceso de memoria.
 - Límite de seguridad de 6 minutos y 30 MB por canción.
 - Mensajes de error persistentes en español y reintento sin recargar la página.
